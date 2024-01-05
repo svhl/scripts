@@ -6,7 +6,8 @@ Some scripts use the home directory as a reference path, so clone the repo to it
 
 ```
 cd
-git clone https://github.com/svhl/scripts.sh
+git clone https://github.com/svhl/scripts.git
+cd scripts/
 sudo chmod u+x *.sh
 mv *.desktop ~/.local/share/applications/
 ```
