@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Resume
+Comment=Reconnect Wi-Fi & VPN after wake from sleep
+Exec=~/scripts/resume.sh
+Terminal=false
+Type=Application
+StartupNotify=false

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=VPN
+Comment=Connect & disconnect from VPN
+Exec=~/scripts/vpn.sh
+Terminal=false
+Type=Application
+StartupNotify=false
