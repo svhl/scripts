@@ -18,7 +18,7 @@ Run a script by searching for it using a launcher or search, or using a custom s
 
 ### [suspend.sh](https://github.com/svhl/scripts/blob/main/suspend.sh) & [resume.sh](https://github.com/svhl/scripts/blob/main/resume.sh)
 
-**Requires permission to run the modprobe commands without password, KDialog on KDE, or Zenity/YAD on GNOME.** For use with TP-Link external Wi-Fi adapters with module `rtl8xxxu` and Proton VPN CLI. Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run before & after suspend.
+**Requires permission to run the modprobe commands without password, KDialog on KDE, or Zenity/YAD on GNOME.** For use with Proton VPN CLI and TP-Link external Wi-Fi adapters with module `rtl8xxxu` (replace with your module name including in the script). Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run the corresponding script before & after suspend.
 
 #### Install TP-Link driver
 
@@ -29,6 +29,17 @@ cd rtl8188eu
 make all
 sudo make install
 sudo modprobe -r rtl8xxxu
+```
+
+Driver breaks after every kernel update. After restarting from a kernel update, run
+
+```
+sudo apt install linux-headers-$(uname -r)
+cd rtl8188eu
+make clean
+git pull
+make
+sudo make install
 ```
 
 #### Install Proton VPN
@@ -46,7 +57,7 @@ iface wlan1 inet manual
 
 #### Avoid password prompt
 
-Allow the modprobe commands to run without password to avoid the password prompt. All the following lines to `/etc/sudoers`
+Allow the modprobe commands to run without password to avoid the password prompt. Add the following lines to `/etc/sudoers`
 
 ```
 [user]	ALL=NOPASSWD: /sbin/modprobe -r rtl8xxxu

@@ -19,14 +19,14 @@ if [[ $(nmcli radio wifi) == "enabled" ]]; then
 		sudo modprobe -r rtl8xxxu
 	
 	# else pipe password & unload module
-	elif [[ $(dpkg -l | grep -E '^ii' | grep kdialog) != '' ]]; then
+	elif [[ $(dpkg -l | grep kdialog) != '' ]]; then
 		kdialog --title "Suspend" --password "The script is attempting to perform an action that requires privileges. Authentication is required to perform this action." | sudo -S modprobe -r rtl8xxxu
 
-	elif [[ $(dpkg -l | grep -E '^ii' | grep zenity) != '' ]]; then
+	elif [[ $(dpkg -l | grep zenity) != '' ]]; then
 		zenity --password --title="Suspend" | sudo -S modprobe -r rtl8xxxu
 	
-	elif [[ $(dpkg -l | grep -E '^ii' | grep yad) != '' ]]; then
-		yad --center --width=300 --image=keys.png --entry --hide-text --button=gtk-ok:0 --button=gtk-cancel:1 --title="Suspend" --text="Type your password" | sudo -S modprobe -r rtl8xxxu
+	elif [[ $(dpkg -l | grep yad) != '' ]]; then
+		yad --center --width=300 --image=gnupg --entry --hide-text --button=gtk-ok:0 --button=gtk-cancel:1 --title="Suspend" --text="Type your password" | sudo -S modprobe -r rtl8xxxu
 	fi
 
 	nmcli radio wifi off
@@ -44,9 +44,9 @@ else
 fi
 
 # go to sleep
-# check if kde or gnome
-if [[ $(dpkg -l | grep -E '^ii' | grep qdbus) != '' ]]; then
+if [[ $(dpkg -l | grep qdbus) != '' ]]; then
 	qdbus org.kde.Solid.PowerManagement /org/freedesktop/PowerManagement Suspend
-elif [[ $(dpkg -l | grep -E '^ii' | grep gnome-core) != '' ]]; then
+
+elif [[ $(dpkg -l | grep gnome-core) != '' ]]; then
 	dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Manager.Suspend
 fi
