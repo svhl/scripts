@@ -50,3 +50,31 @@ if [[ $(dpkg -l | grep qdbus) != '' ]]; then
 elif [[ $(dpkg -l | grep gnome-core) != '' ]]; then
 	dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Manager.Suspend
 fi
+
+# show resume dialog on wake
+if [[ $(dpkg -l | grep kdialog) != '' ]]; then
+	kdialog --title "Resume" --yesno "Restore previous network state?"
+
+elif [[ $(dpkg -l | grep zenity) != '' ]]; then
+	zenity --question --title=Resume --text="Restore previous network state?"
+
+elif [[ $(dpkg -l | grep yad) != '' ]]; then
+	yad --image dialog-question --title Resume --button=gtk-yes:0 --button=gtk-no:1 --text "Restore previous network state?"
+fi
+
+if [ $? == 0 ]; then
+	# check wifi status before suspend
+	if [[ $(sed -n 2p ~/scripts/config) == "on" ]]; then
+		nmcli radio wifi on
+
+		# otherwise vpn connects before wifi
+		sleep 1
+	fi
+
+	# check vpn status before suspend
+	if [[ $(sed -n 4p ~/scripts/config) == "on" ]]; then
+		# disconnect from previous session & reconnect
+		protonvpn-cli d
+		protonvpn-cli c -f
+	fi
+fi

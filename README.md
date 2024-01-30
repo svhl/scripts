@@ -16,9 +16,9 @@ Run a script by searching for it using a launcher or search, or using a custom s
 
 ## Scripts
 
-### [suspend.sh](https://github.com/svhl/scripts/blob/main/suspend.sh) & [resume.sh](https://github.com/svhl/scripts/blob/main/resume.sh)
+### [suspend.sh](https://github.com/svhl/scripts/blob/main/suspend.sh))
 
-**Requires permission to run the modprobe commands without password, KDialog on KDE, or Zenity/YAD on GNOME.** For use with Proton VPN CLI and TP-Link external Wi-Fi adapters with module `rtl8xxxu` (replace with your module name including in the script). Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run the corresponding script before & after suspend.
+**Requires KDialog (KDE) or Zenity/YAD (GNOME).** For use with Proton VPN CLI and TP-Link external Wi-Fi adapters with module `rtl8xxxu` (replace with your module name including in the script). Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run before suspend.
 
 #### Install TP-Link driver
 
