@@ -18,7 +18,10 @@ Run a script by searching for it using a launcher or search, or using a custom s
 
 ### [suspend.sh](https://github.com/svhl/scripts/blob/main/suspend.sh)
 
-**Requires KDialog (KDE) or Zenity/YAD (GNOME).** For use with Proton VPN CLI and TP-Link external Wi-Fi adapters with module `rtl8xxxu` (replace with your module name including in the script). Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run before suspend.
+> [!IMPORTANT]
+> Requires KDialog (KDE) or Zenity (GNOME).
+
+For use with Proton VPN CLI and TP-Link external Wi-Fi adapters with module `rtl8xxxu` (replace with your module name including in the script). Use if Wi-Fi doesn't connect after waking up from suspend or if the system doesn't wake up at all, and for reconnecting VPN after waking up. Run before suspend.
 
 #### Install TP-Link driver
 
@@ -68,4 +71,11 @@ where `[user]` is your username.
 
 ### [vpn.sh](https://github.com/svhl/scripts/blob/main/vpn.sh)
 
+> [!IMPORTANT]
+> Requires KDialog (KDE) or Zenity (GNOME).
+
 Connect & disconnect from Proton VPN.
+
+### [ytrss.sh](https://github.com/svhl/scripts/blob/main/ytrss.sh)
+
+Get the RSS feed for a YouTube channel URL. Based on [avanssion/youtube-channel-id-finder](https://github.com/avanssion/youtube-channel-id-finder).
