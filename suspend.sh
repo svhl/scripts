@@ -24,9 +24,6 @@ if [[ $(nmcli radio wifi) == "enabled" ]]; then
 
 	elif [[ $(dpkg -l | grep zenity) != '' ]]; then
 		zenity --password --title="Suspend" | sudo -S modprobe -r rtl8xxxu
-	
-	elif [[ $(dpkg -l | grep yad) != '' ]]; then
-		yad --center --width=300 --image=gnupg --entry --hide-text --button=gtk-ok:0 --button=gtk-cancel:1 --title="Suspend" --text="Type your password" | sudo -S modprobe -r rtl8xxxu
 	fi
 
 	nmcli radio wifi off
@@ -57,9 +54,6 @@ if [[ $(dpkg -l | grep kdialog) != '' ]]; then
 
 elif [[ $(dpkg -l | grep zenity) != '' ]]; then
 	zenity --question --title=Resume --text="Restore previous network state?"
-
-elif [[ $(dpkg -l | grep yad) != '' ]]; then
-	yad --image dialog-question --title Resume --button=gtk-yes:0 --button=gtk-no:1 --text "Restore previous network state?"
 fi
 
 if [ $? == 0 ]; then
