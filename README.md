@@ -79,3 +79,6 @@ Connect & disconnect from Proton VPN.
 ### [ytrss.sh](https://github.com/svhl/scripts/blob/main/ytrss.sh)
 
 Get the RSS feed for a YouTube channel URL. Based on [avanssion/youtube-channel-id-finder](https://github.com/avanssion/youtube-channel-id-finder).
+
+> [!NOTE]
+> The RSS link will be automatically copied to clipboard on KDE.
