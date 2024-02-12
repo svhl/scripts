@@ -81,4 +81,4 @@ Connect & disconnect from Proton VPN.
 Get the RSS feed for a YouTube channel URL. Based on [avanssion/youtube-channel-id-finder](https://github.com/avanssion/youtube-channel-id-finder).
 
 > [!NOTE]
-> The RSS link will be automatically copied to clipboard on KDE.
+> The RSS link will be automatically copied to clipboard if on KDE or if `xsel` is installed.

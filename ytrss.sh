@@ -17,10 +17,12 @@ if [[ "$META" == '' ]]; then
 
 else
 	echo -e $URL
-fi
 
-# copy to clipboard
-
-if [[ $(dpkg -l | grep qdbus) != '' ]]; then
-	qdbus org.kde.klipper /klipper setClipboardContents "$URL"
+	# copy to clipboard
+	if [[ $(dpkg -l | grep qdbus) != '' ]]; then
+		qdbus org.kde.klipper /klipper setClipboardContents "$URL"
+	
+	elif [[ $(dpkg -l | grep xsel) != '' ]]; then
+		echo -n $URL | xsel -b
+	fi
 fi
