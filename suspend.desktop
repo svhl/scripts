@@ -5,3 +5,4 @@ Exec=~/scripts/suspend.sh
 Terminal=false
 Type=Application
 StartupNotify=false
+Icon=system-suspend
