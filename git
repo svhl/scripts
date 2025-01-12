@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# set path
+if [ -z $GIT_PATH ]; then
+	GIT_PATH=/usr/bin/git
+fi
+
+# clone repo
+# usage: git copy [user]/[repo] [branch]
+if [ $1 == "copy" ]; then
+	# if branch provided
+	if [ ! -z $3 ]; then
+		$GIT_PATH clone https://github.com/$2 --branch $3 ${2#*/}-$3
+
+	# if default branch
+	else
+		$GIT_PATH clone https://github.com/$2 $3
+	fi
+
+# set remote repo with token
+# usage: git sync [token] [user]/[repo]
+elif [ $1 == "sync" ]; then
+	$GIT_PATH set-url origin https://$2@github.com/$3
+
+# undo last commit
+# usage: git undo
+elif [ $1 == "undo" ]; then
+	$GIT_PATH reset --hard HEAD~1
+	read -p "Push changes to repo? [Y/n] " ch
+
+	if [ $ch == "Y" ] || [ $ch == "y" ] || [ -z $ch ]; then
+		$GIT_PATH push origin HEAD --force
+	fi
+
+# other arguments as usual
+else
+	$GIT_PATH "$@"
+fi
