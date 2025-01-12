@@ -22,8 +22,8 @@ Usage: `git copy [user]/[repo] [branch]`
 
 `sync`
 
-Set remote repo by providing token.\
-Usage: `git sync [token] [user]/[repo]`
+Set remote repo. Token needs to be set in `TOKEN` variable.\
+Usage: `git sync [user]/[repo]`
 
 `undo`
 
