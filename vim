@@ -15,13 +15,14 @@ else
 	if [ ! -f "$1" ]; then
 		if [ "$1" == "${1%/*}" ]; then
 			if [ -w $PWD ];then
-				$VIM_PATH "${1}"
-
-			else
-				sudo -E $VIM_PATH "${1}"
+				$VIM_PATH "$1"
 			fi
 		fi
-	
+
+		if [ ! -w "${1%/*}" ]; then
+			sudo -E $VIM_PATH "$1"
+		fi
+			
 	else
 		if [ -w "$1" ]; then
 			$VIM_PATH "$1"
