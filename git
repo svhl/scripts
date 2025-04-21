@@ -5,14 +5,22 @@ if [ -z $GIT_PATH ]; then
 	GIT_PATH=/usr/bin/git
 fi
 
-# set token manually
-if [ -z $TOKEN ]; then
-	TOKEN=""
+# set github token
+# for eg. in ~/.bashrc
+if [ -z $GIT_TOKEN ]; then
+	echo "Set GIT_TOKEN environment variable first."
+	exit
 fi
 
 # clone repo
 # usage: git copy [user]/[repo] [branch]
 if [ $1 == "copy" ]; then
+	# if no repo provided
+	if [ -z $2 ]; then
+		echo "Provide a repo to clone."
+		exit
+	fi
+
 	# if branch provided
 	if [ ! -z $3 ]; then
 		$GIT_PATH clone https://github.com/$2 --branch $3 ${2#*/}-$3
@@ -25,7 +33,13 @@ if [ $1 == "copy" ]; then
 # set remote repo with token
 # usage: git sync [user]/[repo]
 elif [ $1 == "sync" ]; then
-	$GIT_PATH remote set-url origin https://$TOKEN@github.com/$2
+	# if no repo provided
+	if [ -z $2 ]; then
+		echo "Provide a repo to sync."
+		exit
+	fi
+
+	$GIT_PATH remote set-url origin https://$GIT_TOKEN@github.com/$2
 
 # undo last commit
 # usage: git undo
